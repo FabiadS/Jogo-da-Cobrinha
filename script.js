@@ -6,6 +6,7 @@ snake[0] = {
     x: 8 * box,
     y: 8 * box
 }
+let direction = "right";
 
 function criarBG(){   //criar o background
     context.fillStyle= "SpringGreen";  //definir o estilo
@@ -20,5 +21,33 @@ function snakeCreate(){
     }
 }
 
-criarBG();
-snakeCreate();
+function startGame(){
+
+    criarBG();
+    snakeCreate();
+
+    let snakeX = snake[0].x; //posição inicial no x
+    let snakeY = snake[0].y; //posição inicial no y
+
+    //criando as coordenadas
+    if(direction == "right") snakeX += box;  //direita
+    if(direction =="left") snakeX -= box; //esquerda
+
+    if(direction == "up") snakeY += box;  //cima
+    if(direction =="down") snakeY -= box; //baixo
+
+    snake.pop(); //retira o ultimo elemento do array
+
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    }
+
+    snake.unshift(newHead); //adiciona a nova cabeça ao inicio do array
+    
+
+}
+
+let game = setInterval(startGame, 100); //a cada 100 milisegundos o jogo se renova sem travar
+
+
