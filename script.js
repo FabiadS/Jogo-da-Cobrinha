@@ -62,7 +62,14 @@ function startGame(){
     if(direction == "up") snakeY -= box;  //cima
     if(direction =="down") snakeY += box; //baixo
 
-    snake.pop(); //retira o ultimo elemento do array
+    if(snakeX != food.x || snakeY != food.y){
+        snake.pop(); //retira o ultimo elemento do array
+    }
+    else{
+        food.x = Math.floor(Math.random() * 15 + 1) * box,  //criando números aleatorios, tirando a parte flutuante   
+        food.y = Math.floor(Math.random() * 15 +1) * box
+    }
+    
 
     let newHead = {
         x: snakeX,
