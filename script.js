@@ -7,6 +7,10 @@ snake[0] = {
     y: 8 * box
 }
 let direction = "right";
+let food = {
+    x: Math.floor(Math.random() * 15 + 1) * box,  //criando números aleatorios, tirando a parte flutuante   
+    y: Math.floor(Math.random() * 15 +1) * box
+}
 
 function criarBG(){   //criar o background
     context.fillStyle= "SpringGreen";  //definir o estilo
@@ -19,6 +23,11 @@ function snakeCreate(){
         context.fillStyle = "DarkSlateGray";
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawFood(){
+    context.fillStyle = "blue";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 // clique no botão do teclado:keydown
@@ -40,6 +49,7 @@ function startGame(){
 
     criarBG();
     snakeCreate();
+    drawFood();
 
     let snakeX = snake[0].x; //posição inicial no x
     let snakeY = snake[0].y; //posição inicial no y
