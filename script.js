@@ -21,7 +21,22 @@ function snakeCreate(){
     }
 }
 
+// clique no botão do teclado:keydown
+document.addEventListener('keydown', update);
+
+function update(event){
+    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down";
+}
 function startGame(){
+
+    if(snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box; 
+
 
     criarBG();
     snakeCreate();
@@ -29,12 +44,13 @@ function startGame(){
     let snakeX = snake[0].x; //posição inicial no x
     let snakeY = snake[0].y; //posição inicial no y
 
+
     //criando as coordenadas
     if(direction == "right") snakeX += box;  //direita
     if(direction =="left") snakeX -= box; //esquerda
 
-    if(direction == "up") snakeY += box;  //cima
-    if(direction =="down") snakeY -= box; //baixo
+    if(direction == "up") snakeY -= box;  //cima
+    if(direction =="down") snakeY += box; //baixo
 
     snake.pop(); //retira o ultimo elemento do array
 
